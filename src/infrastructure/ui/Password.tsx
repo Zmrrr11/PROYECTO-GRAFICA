@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { View, ImageBackground, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { TextInput, Button, Text, Card } from 'react-native-paper';
-import { loginStyles, COLORS } from './styles/login.styles';
+import { ImageBackground, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Card } from 'react-native-paper';
+import { loginStyles } from './styles/login.styles';
+import EmailInput from '../components/Login/EmailInput';
+import RecoveryHeader from '../components/Recovery/RecoveryHeader';
+import RecoveryActions from '../components/Recovery/RecoveryActions';
 
 const fondoColegio = require('../../../assets/images/Fondo.png');
 
 const Password = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
+
+  const handleSend = () => {
+    alert('Se ha enviado un código a su correo');
+  };
 
   return (
     <ImageBackground source={fondoColegio} style={loginStyles.backgroundImage} blurRadius={5}>
@@ -17,40 +24,16 @@ const Password = ({ navigation }: any) => {
         <ScrollView contentContainerStyle={loginStyles.scroll}>
           <Card style={loginStyles.card}>
             <Card.Content style={loginStyles.content}>
-              <Text variant="headlineSmall" style={[loginStyles.title, { marginBottom: 10 }]}>
-                Recuperar Acceso 
-              </Text>
               
-              <Text style={{ color: COLORS.GRAY_TEXT, marginBottom: 20, textAlign: 'center' }}>
-                Ingresa tu correo institucional para reestablecer tu contraseña.
-              </Text>
+              <RecoveryHeader />
 
-              <TextInput
-                label="Correo Institucional"
-                value={email}
-                onChangeText={setEmail}
-                mode="outlined"
-                style={loginStyles.input}
-                activeOutlineColor={COLORS.SECONDARY_BLUE}
-                left={<TextInput.Icon icon="email" />}
+              <EmailInput value={email} onChangeText={setEmail} />
+
+              <RecoveryActions 
+                onSend={handleSend} 
+                onBack={() => navigation.goBack()} 
               />
 
-              <Button 
-                mode="contained" 
-                style={loginStyles.button} 
-                contentStyle={loginStyles.buttonContent}
-                onPress={() => alert('Se ha enviado un código a su correo')}
-              >
-                ENVIAR
-              </Button>
-
-              <Button 
-                mode="text" 
-                onPress={() => navigation.goBack()} 
-                textColor={COLORS.SECONDARY_BLUE}
-              >
-                Regresar
-              </Button>
             </Card.Content>
           </Card>
         </ScrollView>
