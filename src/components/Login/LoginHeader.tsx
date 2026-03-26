@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { Text } from 'react-native-paper';
-import { loginStyles } from '../../ui/styles/login.styles';
+import { loginStyles, COLORS } from '../../styles/login.styles';
 
-const logoColegio = require('../../../../assets/images/Logo.png');
+const logoColegio = require('../../../assets/images/Logo.png');
 
 const LoginHeader = () => (
   <View style={loginStyles.header}>

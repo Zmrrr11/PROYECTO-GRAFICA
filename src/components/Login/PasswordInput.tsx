@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
-import { loginStyles, COLORS } from '../../ui/styles/login.styles';
+import { loginStyles, COLORS } from '../../styles/login.styles';
 
 interface Props {
   value: string;
